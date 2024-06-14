@@ -1,6 +1,7 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import { LayoutLoader } from "./components/layout/Loaders";
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
@@ -12,25 +13,28 @@ const App = () => {
   let user = true;
   return (
     <BrowserRouter>
-      <Routes>
+      <Suspense fallback={<LayoutLoader/>}>
+        <Routes>
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="/" element={<Home />} />
 
-        <Route element={<ProtectedRoute user={user} />}>
-          <Route path="/" element={<Home />} />
+            <Route path="/chat/:chatId" element={<Chat />} />
 
-          <Route path="/chat/:chatId" element={<Chat />} />
+            <Route path="/groups" element={<Groups />} />
+          </Route>
 
-          <Route path="/groups" element={<Groups />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute user={!user} redirect="/">
+                <Login />
+              </ProtectedRoute>
+            }
+          />
 
-        </Route>
-
-
-        <Route path="/login" element={<ProtectedRoute user={!user} redirect="/" >
-          <Login />
-          </ProtectedRoute>
-        } />
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
