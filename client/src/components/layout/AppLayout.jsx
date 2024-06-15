@@ -5,6 +5,7 @@ import Header from "./Header";
 import Chatlist from "../specific/Chatlist";
 import { sampleChats } from "../../constants/sampleData";
 import { useParams } from "react-router-dom";
+import Profile from "../specific/Profile";
 
 const AppLayout = () => (WrappedComponent) => {
     return (props) => {
@@ -52,9 +53,10 @@ const AppLayout = () => (WrappedComponent) => {
                 sx={{
                     display: { xs: "none", md: "block" },
                     padding: "1rem",
+                    backgroundColor:"#e8e4e4"
                 }} 
             >
-                Sidebar
+                <Profile/>
             </Grid>
         </Grid>
       </>
