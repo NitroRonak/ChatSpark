@@ -2,25 +2,35 @@ import React from "react";
 import Title from "../shared/Title";
 import Grid from '@mui/material/Grid'
 import Header from "./Header";
+import Chatlist from "../specific/Chatlist";
+import { sampleChats } from "../../constants/sampleData";
+import { useParams } from "react-router-dom";
 
 const AppLayout = () => (WrappedComponent) => {
-  return (props) => {
+    return (props) => {
+      const params=useParams();
+      const chatId=params.chatId;
+      const handleDeleteChat=(e,_id,groupChat)=>{
+        e.preventDefault();
+        console.log("Deleted Chat",_id,groupChat)
+      }
     return (
       <>
         <Title />
         <Header/>
 
-        <Grid container height={"calc(100vh - 4rem)"} sx={{bgcolor:"rgb(5,1,20)", color:"white" }}>
+        <Grid container height={"calc(100vh - 4rem)"}>
             <Grid 
                 item 
                 sm={4}
                 md={3}
                 sx={{
                     display: { xs: "none", sm: "block" },
+                    padding: "1rem",
                 }}
                 height={"100%"}
             >
-                Sidebar
+                <Chatlist chats={sampleChats} chatId={chatId} handleDeleteChat={handleDeleteChat}/>
             </Grid>  
 
             <Grid
@@ -41,8 +51,8 @@ const AppLayout = () => (WrappedComponent) => {
                 height={"100%"}
                 sx={{
                     display: { xs: "none", md: "block" },
-                    padding: "2rem",
-                }}
+                    padding: "1rem",
+                }} 
             >
                 Sidebar
             </Grid>
