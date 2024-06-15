@@ -12,12 +12,12 @@ export const LayoutLoader = () => {
         }}
         height={"100%"}
       >
-        <Skeleton variant="rectangular" height={"100vh"} />
+        <Skeleton variant="rectangular" height={"100%"} />
       </Grid>
 
       <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"}>
         <Stack spacing={"1rem"}>
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} variant="rounded" height={"5rem"} />
           ))}
         </Stack>
@@ -33,7 +33,7 @@ export const LayoutLoader = () => {
           padding: "2rem",
         }}
       >
-        <Skeleton variant="rectangular" height={"100vh"} />
+        <Skeleton variant="rectangular" height={"100%"} />
       </Grid>
     </Grid>
   );
