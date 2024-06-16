@@ -14,7 +14,7 @@ const Chatlist = ({
     handleDeleteChat
 }) => {
   return (
-    <Stack width={w} direction={"column"}>
+    <Stack width={w} direction={"column"} spacing={"0.5rem"}>
       {chats?.map((data,index)=>{
         const {avatar,name,_id,groupChat,members} = data
 

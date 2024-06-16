@@ -20,9 +20,11 @@ const ChatItem = ({
         display: "flex",
         gap:"1rem",
         alignItems:"center",
-        backgroundColor:sameSender ? "black" : "unset",
+        backgroundColor:sameSender ? "rgb(0, 0, 0, 0.6)" : "unset",
         color:sameSender ? "white" : "unset",
         position:"relative",
+        padding:"0.5rem 0.2rem",
+        borderRadius:"0.5rem",
       }}>
 
         <AvatarCard avatar={avatar}/>
